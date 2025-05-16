@@ -18,7 +18,9 @@ func initCashierHandler() handlers.CashierHandler {
 func InitCashierRoutes(e *echo.Group) {
 	cashierHandler := initCashierHandler()
 
-	e.GET("/cashier/transactions", cashierHandler.GetTransactionList)
-	e.POST("/cashier/transactions", cashierHandler.CreateTransaction)
-	e.PUT("/cashier/transactions/:id", cashierHandler.UpdateStock)
+	cashier := e.Group("/cashier")
+
+	cashier.GET("/transactions", cashierHandler.GetTransactionList)
+	cashier.POST("/transactions", cashierHandler.CreateTransaction)
+	cashier.PUT("/transactions/:id", cashierHandler.UpdateStock)
 }

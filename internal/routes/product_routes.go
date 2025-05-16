@@ -19,11 +19,12 @@ func initProductHandler() handlers.ProductHandler {
 func InitProductRoutes(e *echo.Group) {
 	productHandler := initProductHandler()
 
-	e.Use(middlewares.AuthMiddleware)
-	
-	e.GET("/products", productHandler.GetProducts)
-	e.GET("/products/:id", productHandler.GetProduct)
-	e.POST("/products", productHandler.CreateProduct)
-	e.PUT("/products/:id", productHandler.UpdateProduct)
-	e.DELETE("/products/:id", productHandler.DeleteProduct)
+	product := e.Group("/products")
+	product.Use(middlewares.AuthMiddleware)
+
+	product.GET("", productHandler.GetProducts)
+	product.GET("/:id", productHandler.GetProduct)
+	product.POST("", productHandler.CreateProduct)
+	product.PUT("/:id", productHandler.UpdateProduct)
+	product.DELETE("/:id", productHandler.DeleteProduct)
 }

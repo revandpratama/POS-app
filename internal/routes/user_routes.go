@@ -19,10 +19,11 @@ func initUserHandler() handlers.UserHandler {
 func InitUserRoutes(e *echo.Group) {
 	handler := initUserHandler()
 
-	e.Use(middlewares.AuthMiddleware)
+	user := e.Group("/users")
+	user.Use(middlewares.AuthMiddleware)
 	
-	e.GET("/users", handler.GetUsers)
-	e.GET("/users/:id", handler.GetUser)
-	e.PUT("/users/:id", handler.UpdateUser)
-	e.DELETE("/users/:id", handler.DeleteUser)
+	user.GET("/", handler.GetUsers)
+	user.GET("/:id", handler.GetUser)
+	user.PUT("/:id", handler.UpdateUser)
+	user.DELETE("/:id", handler.DeleteUser)
 }
