@@ -13,7 +13,7 @@ A Point of Sale (POS) system with RESTful API endpoints for user management, aut
 
 ### Base URL
 
-All API requests should be made to:
+All API requests should be directed to:
 ```
 http://localhost:8080/api
 ```
@@ -37,13 +37,13 @@ Request body:
 
 #### Register
 ```
-POST /login
-```
-Note: This endpoint may be misconfigured in the collection and should possibly be `/register`.
+POST /register
+
 
 Request body:
 ```json
 {
+    "name": "user 1"
     "email": "user@example.com",
     "password": "password"
 }
@@ -53,10 +53,10 @@ Request body:
 
 | Method | Endpoint    | Description      | Authentication |
 |--------|-------------|------------------|---------------|
-| GET    | /users      | Get all users    | No            |
-| GET    | /users/:id  | Get a single user| No            |
-| PUT    | /users/:id  | Update a user    | No            |
-| DELETE | /users/:id  | Delete a user    | No            |
+| GET    | /users      | Get all users    | Bearer token           |
+| GET    | /users/:id  | Get a single user| Bearer token           |
+| PUT    | /users/:id  | Update a user    | Bearer token            |
+| DELETE | /users/:id  | Delete a user    | Bearer token            |
 
 ### Product Endpoints
 
@@ -81,9 +81,9 @@ Example product creation:
 
 | Method | Endpoint                | Description           | Authentication |
 |--------|-------------------------|-----------------------|---------------|
-| GET    | /cashier/transactions   | Get transaction list  | Bearer token  |
-| POST   | /cashier/transactions   | Create transaction    | Yes           |
-| POST   | /cashier/transactions   | Update stock          | Yes           |
+| GET    | /cashier/transactions   | Get transaction list  | No           |
+| POST   | /cashier/transactions   | Create transaction    | No           |
+| PUT   | /cashier/transactions   | Update stock          | No           |
 
 ## Installation
 
