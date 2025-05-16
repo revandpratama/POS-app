@@ -26,7 +26,10 @@ func (h *authHandler) Login(c echo.Context) error {
 
 	var req dto.LoginRequest
 	if err := c.Bind(&req); err != nil {
-		return err
+		return c.JSON(http.StatusBadRequest, map[string]any{
+			"message": "failed",
+			"error":   err.Error(),
+		})
 	}
 
 	token, err := h.authService.Login(&req)
