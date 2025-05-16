@@ -38,7 +38,7 @@ Request body:
 #### Register
 ```
 POST /register
-
+```
 
 Request body:
 ```json
