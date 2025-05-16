@@ -30,7 +30,7 @@ func ConnectDB() error {
 		return err
 	}
 
-	if err := db.AutoMigrate(&entities.User{}); err != nil {
+	if err := db.AutoMigrate(&entities.User{}, &entities.Product{}, &entities.Transaction{}); err != nil {
 		return err
 	}
 
