@@ -23,7 +23,7 @@ func GenerateToken(user *entities.User) (string, error) {
 		Email: user.Email,
 		RegisteredClaims: jwt.RegisteredClaims{
 			IssuedAt:  jwt.NewNumericDate(time.Now()),
-			ExpiresAt: jwt.NewNumericDate(time.Now().Add(time.Minute * 5)),
+			ExpiresAt: jwt.NewNumericDate(time.Now().Add(time.Minute * 60)),
 		},
 	})
 	tokenString, err := token.SignedString([]byte(config.ENV.JWT_SECRET))
@@ -35,7 +35,7 @@ func VerifyToken(tokenString string) (*JWTCustomClaims, error) {
 		if _, ok := token.Method.(*jwt.SigningMethodHMAC); !ok {
 			return nil, fmt.Errorf("unexpected signing method: %v", token.Header["alg"])
 		}
-		return []byte("rahasia-negara-bumi-hwhwhw"), nil
+		return []byte(config.ENV.JWT_SECRET), nil
 	})
 	if err != nil {
 		return nil, err
