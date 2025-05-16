@@ -42,6 +42,7 @@ func main() {
 	g := e.Group("/api")
 
 	routes.InitAuthRoutes(g)
+	routes.InitUserRoutes(g)
 
 	go func() {
 		log.Printf("Server running on port %s", config.ENV.PORT)
