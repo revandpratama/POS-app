@@ -1,6 +1,10 @@
 package entities
 
-import "time"
+import (
+	"time"
+
+	"gorm.io/gorm"
+)
 
 type Transaction struct {
 	ID        int `gorm:"primary_key"`
@@ -10,5 +14,5 @@ type Transaction struct {
 	Total     float64
 	CreatedAt time.Time
 	UpdatedAt time.Time
-	DeletedAt time.Time
+	DeletedAt gorm.DeletedAt
 }

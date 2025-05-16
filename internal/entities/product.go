@@ -1,6 +1,10 @@
 package entities
 
-import "time"
+import (
+	"time"
+
+	"gorm.io/gorm"
+)
 
 type Product struct {
 	ID        int `gorm:"primary_key"`
@@ -9,5 +13,5 @@ type Product struct {
 	Quantity  int
 	CreatedAt time.Time
 	UpdatedAt time.Time
-	DeletedAt time.Time
+	DeletedAt gorm.DeletedAt
 }
