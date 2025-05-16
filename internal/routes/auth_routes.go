@@ -10,14 +10,14 @@ import (
 )
 
 
-func initHandler() handlers.AuthHandler {
+func initAuthHandler() handlers.AuthHandler {
 	repo := repositories.NewAuthRepository(adapter.DB)
 	service := services.NewAuthService(repo)
 	return handlers.NewAuthHandler(service)
 }
 
 func InitAuthRoutes(e *echo.Group) {
-	handler := initHandler()
+	handler := initAuthHandler()
 	
 	e.POST("/register", handler.Register)
 	e.POST("/login", handler.Login)
