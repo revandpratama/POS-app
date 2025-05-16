@@ -43,6 +43,7 @@ func main() {
 
 	routes.InitAuthRoutes(g)
 	routes.InitUserRoutes(g)
+	routes.InitProductRoutes(g)
 
 	go func() {
 		log.Printf("Server running on port %s", config.ENV.PORT)
